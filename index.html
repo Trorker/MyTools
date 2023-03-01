@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tools</title>
+
+    <!--<link href="https://gestionece.github.io/resources/img/favicon.png" rel="shortcut icon" type="image/png">-->
+
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!--Import W3.css-->
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+            <style>
+        /* ---------- Options ---------- */
+        .noselect {
+        -webkit-touch-callout: none; /* iOS Safari */
+        -webkit-user-select: none; /* Safari */
+        -khtml-user-select: none; /* Konqueror HTML */
+        -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+        user-select: none; /* Non-prefixed version, currently supported by Chrome and Opera */
+        }
+
+        body,
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /*
+            Get information about a specific image by using the the /id/{id}/info endpoint.
+
+            https://picsum.photos/id/0/info
+            You can find out the ID of an image by looking at the Picsum-ID header, or the User Comment field in the EXIF metadata.
+
+            {
+                    "id": "0",
+                    "author": "Alejandro Escamilla",
+                    "width": 5616,
+                    "height": 3744,
+                    "url": "https://unsplash.com/...",
+                    "download_url": "https://picsum.photos/..."
+            }
+        */
+
+        .bgimg {
+            background: url(https://picsum.photos/1920/1080?random) no-repeat center fixed;
+            /*&grayscale*/
+            background-size: cover;
+        }
+
+        .max-height {
+            height: 100vh;
+        }
+
+        @media only screen and (max-width: 300px) {
+            #app {
+                display: none;
+            }
+        }
+
+        .dark-color {
+            background-color: #303030;
+        }
+    </style>
+</head>
+
+<body class="dark-color noselect">
+    <!-- App -->
+    <div id="app">
+        <!-- First Parallax Image with Logo Text -->
+        <div class="bgimg w3-display-container w3-animate-opacity w3-text-white max-height">
+            <div class="w3-display-topleft w3-padding-large w3-xlarge">
+                Logo
+            </div>
+            <div class="w3-display-middle">
+                <h1 class="w3-jumbo w3-animate-top w3-center">Tools & Script</h1>
+                <hr class="w3-border-white w3-bottombar">
+                <p class="w3-xlarge w3-center">It's free</p>
+            </div>
+            <div class="w3-display-bottomleft w3-container">
+                <p class="w3-medium">View the project on <a href="https://github.com/Levratti/tools"
+                        target="_blank">GitHub</a></p>
+                <p class="w3-small">powered by <a href="https://www.w3schools.com/w3css/default.asp"
+                        target="_blank">w3.css</a></p>
+            </div>
+            <div class="w3-display-bottommiddle w3-container w3-margin-bottom w3-padding-64">
+                <span class="material-icons w3-jumbo w3-animate-zoom">keyboard_arrow_down</span>
+            </div>
+        </div>
+
+        <!-- Container (About Section) -->
+        <div class="w3-content w3-container w3-padding-64 w3-text-white w3-margin-bottom" id="list">
+            <h3 class="w3-center">SCRIPT & TOOLS</h3>
+            <p class="w3-center"><em>It's free</em></p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis unde id esse aspernatur? Soluta ullam
+                iusto itaque tenetur rerum, est ex nobis maiores, eveniet ipsum saepe cum voluptate, tempora quas..</p>
+
+
+            <ul class="w3-ul w3-margin-bottom">
+
+                <li v-for="(data, index) in toolsAndScript" :key="index">
+                    <div class="w3-row">
+                        <div class="w3-col s9 m10 l10">
+                            <span class="w3-large">{{data.Title}}</span>
+                        </div>
+                        <div class="w3-col s3 m2 l2"> <!--target="_blank"-->
+                            <a :href="data.URL" class="w3-right w3-text-green">{{(data.Type == 'Script' ? 'Install' : 'Open')}}<span class="material-icons w3-small">{{(data.Type == 'Script' ? 'install_desktop' : 'open_in_new')}}</span></a>
+                        </div>
+                    </div>
+                    <div class="w3-row">
+                        <i class="w3-tiny w3-left">Last update {{data.LastUpdate}}</i><br>
+                        <span class="w3-tiny">{{data.Description}}</span>
+                    </div>
+                </li>
+            </ul>
+
+
+
+            <!-- <div class="w3-row">
+                <div class="w3-col m3 w3-center w3-padding-large">
+                    <p><b>Best Tools</b><br><i class="w3-tiny">GestioneCE</i></p>
+                    <img src="/resource/img/GestioneCE.png"
+                        class="w3-round w3-image w3-opacity w3-hover-opacity-off" alt="Photo of Me" width="150"
+                        height="333">
+                </div> -->
+
+            <!-- Hide this text on small devices -->
+            <!-- <div class="w3-col m9 w3-hide-small w3-padding-large">
+                    <p>Welcome to my website. I am lorem ipsum consectetur adipiscing elit, sed do eiusmod tempor
+                        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                        ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+                        dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+                        sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
+                        laborum consectetur adipiscing elit, sed do eiusmod tempor
+                        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                        ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                </div>
+            </div> -->
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <!--Development-->
+    <!--<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>-->
+    <!--Product-->
+    <script src="resource/js/main.js"></script>
+</body>
+
+</html>
