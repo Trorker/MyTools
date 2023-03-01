@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         Extract_RPC
+// @name         Extract_RPC_FB
 // @namespace    https://github.com/trorker
 // @version      0.1
 // @description  Aggiunge lo strumento per estrazzione dei RPC o ST
