@@ -38,13 +38,27 @@ var app = new Vue({
                 Description: "Genera gratis codici a barre online"
             },
             {
+                URL: "script/Extract_RPC_FB.user.js",
+                Type: "Script",
+                Title: "Extract RPC FB",
+                LastUpdate: "01/03/2023",
+                Description: "Aggiunge lo strumento per estrazzione dei RPC o ST."
+            },
+            {
+                URL: "script/Icon_Note_FB.user.js",
+                Type: "Script",
+                Title: "Icon Note FB",
+                LastUpdate: "01/03/2023",
+                Description: "Sostituisce la Icon base della nota con una personalizzata."
+            },
+            {
                 URL: "script/Link_Marker_Position_MyMaps.user.js",
                 Type: "Script",
                 Title: "Link Marker Position MyMaps",
                 LastUpdate: "18/05/2022",
                 Description: "Crea link pee visulazzare il marker su Google Maps."
             },
-            {
+            /*{
                 URL: "script/Chiusura_RCMI_GeCo.user.js",
                 Type: "Script",
                 Title: "Chiusura RCMI GeCo",
@@ -106,7 +120,7 @@ var app = new Vue({
                 Title: "Sigilli GeCo",
                 LastUpdate: "14/10/2022",
                 Description: "Scaricare la lista di sigilli M2"
-            },
+            },*/
             /*{
                 URL: "script/Send_GdM_to_SENSI.user.js",
                 Type: "Script",
