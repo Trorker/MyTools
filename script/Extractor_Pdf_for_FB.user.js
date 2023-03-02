@@ -1,7 +1,7 @@
 // ==UserScript==
-// @name         Extract_RPC_FB
+// @name         Extractor Pdf for FB
 // @namespace    https://github.com/trorker
-// @version      0.1
+// @version      1.0.0
 // @description  Aggiunge lo strumento per estrazzione dei RPC o ST
 // @author       Ruslan Dzyuba
 // @match        https://it-beat.enelint.global/
@@ -91,17 +91,24 @@
     window.About = () => {
 
       var ScriptInfo = GM_info.script;
-      //console.log(GM_info)
+      console.log(GM_info)
 
         window.Swal.fire({
             title: 'About us',
             html: `
-                    <div style="font-size: 1em"><b>${ScriptInfo.author}</b><div>
-                    <div style="font-size: 0.6em"><i><b>Version:</b> ${ScriptInfo.version}</i><div>
+                    <h3><b>${ScriptInfo.name}</b></h3>
+                    <h4><i>by&nbsp;</i><a href="https://github.com/trorker"><b>${ScriptInfo.author}</b></a><h4>
+                    <div style="font-size: 0.6em"><i><b>Version:&nbsp;</b>${ScriptInfo.version}</i><div>
                     `,
             footer: '<span>Vuoi contattare lo sviluppatore</span>...manda una&nbsp;<a href="mailto:ruslan.dzyuba@e-distribuzione.com"> mail</a>',
             showConfirmButton: false,
             showCloseButton: true,
+            imageWidth: 100,
+            imageHeight: 100,
+            imageAlt: 'GitHub Avatar',
+            customClass: {
+              image: 'border-radius: 50%',
+            },
             willOpen: () => {
                 Swal.showLoading();
                 fetch(`//api.github.com/users/Trorker`)
@@ -114,19 +121,13 @@
                 })
                     .then((result) => {
                     Swal.update({
-                        imageWidth: 100,
-                        imageHeight: 100,
-                        imageAlt: 'GitHub Avatar',
                         imageUrl: result.avatar_url,
-                        customClass: {
-                            image: 'border-radius: 50%',
-                        }
                     })
                 })
-                    .catch(error => {
-                    Swal.showValidationMessage(
-                        `Request failed: ${error}`
-                    )
+                  .catch(error => {
+                  Swal.showValidationMessage(
+                      `Request failed: ${error}`
+                  )
                 })
             },
         });
@@ -214,7 +215,7 @@
             loadingTask.promise.then(function (pdf) {
 
                 pdf.getPage(1).then(function (page) {
-                    // you can now use *page* here
+                    // you can now use page here
                     page.getTextContent().then(function (textContent) {
                         // Solve promise with the text retrieven from the page
                         //console.log(textContent.items);
