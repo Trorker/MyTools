@@ -38,10 +38,10 @@ var app = new Vue({
                 Description: "Genera gratis codici a barre online"
             },
             {
-                URL: "script/Extract_RPC_FB.user.js",
+                URL: "script/Extractor_Pdf_for_FB.user.js",
                 Type: "Script",
                 Title: "Extract RPC FB",
-                LastUpdate: "01/03/2023",
+                LastUpdate: "02/03/2023",
                 Description: "Aggiunge lo strumento per estrazzione dei RPC o ST."
             },
             {
