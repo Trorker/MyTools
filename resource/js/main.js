@@ -45,6 +45,13 @@ var app = new Vue({
                 Description: "Genera gratis codici a barre online"
             },
             {
+                URL: "https://violentmonkey.github.io/",
+                Type: "Tools",
+                Title: "Violentmonkey",
+                LastUpdate: "02/03/2023",
+                Description: "Violentmonkey fornisce il supporto degli script utente per i browser."
+            },
+            {
                 URL: "script/Extractor_Pdf_for_FB.user.js",
                 Type: "Script",
                 Title: "Extract RPC FB",
