@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Extractor Pdf for FB
 // @namespace    https://github.com/trorker
-// @version      1.0.0
+// @version      1.0.1
 // @description  Aggiunge lo strumento per estrazzione dei RPC o ST
 // @author       Ruslan Dzyuba
 // @match        https://it-beat.enelint.global/
@@ -97,15 +97,12 @@
             title: 'About us',
             html: `
                     <h3><b>${ScriptInfo.name}</b></h3>
-                    <h4><i>by&nbsp;</i><a href="https://github.com/trorker"><b>${ScriptInfo.author}</b></a><h4>
+                    <h4><i>by&nbsp;</i><a href="https://github.com/trorker" target="_blank"><b>${ScriptInfo.author}</b></a><h4>
                     <div style="font-size: 0.6em"><i><b>Version:&nbsp;</b>${ScriptInfo.version}</i><div>
                     `,
             footer: '<span>Vuoi contattare lo sviluppatore</span>...manda una&nbsp;<a href="mailto:ruslan.dzyuba@e-distribuzione.com"> mail</a>',
             showConfirmButton: false,
             showCloseButton: true,
-            imageWidth: 100,
-            imageHeight: 100,
-            imageAlt: 'GitHub Avatar',
             customClass: {
               image: 'border-radius: 50%',
             },
@@ -122,13 +119,11 @@
                     .then((result) => {
                     Swal.update({
                         imageUrl: result.avatar_url,
+                        imageWidth: 100,
+                        imageHeight: 100,
+                        imageAlt: 'GitHub Avatar',
                     })
-                })
-                  .catch(error => {
-                  Swal.showValidationMessage(
-                      `Request failed: ${error}`
-                  )
-                })
+                }) //.catch(error => { Swal.showValidationMessage(`Request failed: ${error}` )});
             },
         });
     }
