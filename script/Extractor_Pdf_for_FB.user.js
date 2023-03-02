@@ -332,7 +332,7 @@
         });
     }
 
-    window.extractPdf = (pdf_blob, select, checked_report) => {
+    window.extractPdf = (pdf_blob, select, checked) => {
         new Response(pdf_blob).arrayBuffer().then(async (ArrayBuffer) => {
 
             let results = [];
@@ -418,7 +418,7 @@
             });
 
 
-            if (checked_report) {
+            if (checked && select == "RPC") {
                 window.download(window.JsonToCsv(results), "report.csv", "text/csv");
             }
 
