@@ -24,6 +24,13 @@ var app = new Vue({
                 Description: "Serve per precompilare la specifica tecnica."
             },
             {
+                URL: "https://www.mappecatasto.it/c1.htm",
+                Type: "Tools",
+                Title: "Mappe Catasto",
+                LastUpdate: "02/03/2023",
+                Description: "Servizio gratuito per la consultazione delle mappe catastali con sovrapposizione delle mappe satellitari di Google Maps®"
+            },
+            {
                 URL: "https://umap.geonue.com/en/map/confini-e-dati-statistici-dei-comuni-ditalia_297#14/44.8881/11.0792",
                 Type: "Tools",
                 Title: "Confini dei comuni",
