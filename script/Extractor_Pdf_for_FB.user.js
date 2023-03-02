@@ -103,9 +103,6 @@
             footer: '<span>Vuoi contattare lo sviluppatore</span>...manda una&nbsp;<a href="mailto:ruslan.dzyuba@e-distribuzione.com"> mail</a>',
             showConfirmButton: false,
             showCloseButton: true,
-            customClass: {
-              image: 'border-radius: 50%',
-            },
             willOpen: () => {
                 Swal.showLoading();
                 fetch(`//api.github.com/users/Trorker`)
