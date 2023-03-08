@@ -55,21 +55,21 @@ var app = new Vue({
                 URL: "script/Extractor_Pdf_for_FB.user.js",
                 Type: "Script",
                 Title: "Extract RPC FB",
-                LastUpdate: "02/03/2023",
+                LastUpdate: "08/03/2023",
                 Description: "Aggiunge lo strumento per estrazzione dei RPC o ST."
             },
             {
-                URL: "script/beta_Extractor_Pdf_for_FB.user.js",
+                URL: "script/ex_Extractor_Pdf_for_FB.user.js",
                 Type: "Script",
-                Title: "[beta] Extract RPC FB",
-                LastUpdate: "02/03/2023",
-                Description: "[beta] Aggiunge lo strumento per estrazzione dei RPC o ST."
+                Title: "[Ex] Extract RPC FB",
+                LastUpdate: "08/03/2023",
+                Description: "[Ex] Aggiunge lo strumento per estrazzione dei RPC o ST."
             },
             {
                 URL: "script/Icon_Note_FB.user.js",
                 Type: "Script",
                 Title: "Icon Note FB",
-                LastUpdate: "01/03/2023",
+                LastUpdate: "08/03/2023",
                 Description: "Sostituisce la Icon base della nota con una personalizzata."
             },
             {
