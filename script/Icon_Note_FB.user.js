@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Icon Note FB
 // @namespace    http://tampermonkey.net/
-// @version      0.1
+// @version      0.0.2
 // @description  Sostituisce la Icon base della nota con una personalizzata.
 // @author       Ruslan Dzyuba(Trorker)
 // @match        https://it-forcebeatw.enelint.global/geocallfbi/w/Servlet*
@@ -110,6 +110,32 @@
 
         //Aconsole.log(parentTarget);
 
+        const CFT = {
+          "D000OO7": "Bastiglia",
+          "D000OO8": "Bomporto",
+          "D000OO9": "Campogalliano",
+          "D000OP0": "Camposanto",
+          "D000OP1": "Carpi A",
+          "D000OP2": "Carpi a Nord",
+          "D000OP3": "Carpi a Sud",
+          "D000OP4": "Carpi B",
+          "D000OP5": "Carpi C",
+          "D000OP6": "Castelfranco Emilia",
+          "D000OP7": "Cavezzo",
+          "D000OP8": "Concordia sulla Secchia",
+          "D000OP9": "Finale Emilia",
+          "D000OQ0": "Medolla",
+          "D000OQ1": "Mirandola",
+          "D000OQ2": "Modena",
+          "D000OQ3": "Nonantola",
+          "D000OQ4": "Novi di Modena",
+          "D000OQ5": "Ravarino",
+          "D000OQ6": "San Felice sul Panaro",
+          "D000OQ7": "San Possidonio",
+          "D000OQ8": "San Prospero",
+          "D000OQ9": "Soliera"
+        }
+
         const from = [
             { name: "Dzyuba Ruslan (Grids IT EMR)", email: "ruslan.dzyuba@e-distribuzione.com" }
         ];
@@ -149,7 +175,8 @@
                                               <p style='margin-right:0cm;margin-left:0cm;margin:0cm;'><span style='font-size:13px;font-family:"Arial",sans-serif;'>Il lavoro &egrave; nato <strong><span style="color:red;">${infoData.Type.split(" ")[0]}</span></strong>, se per caso si modifica il BG comunicarlo tempestivamente.</span></p>
                                              ` : "")
 
-        const subject = `Sviluppo ${type}: ${infoData.Name} c.r. ${infoData.ID} - Scadenza ${date}`;
+        const _CFT = CFT[infoData.CFT.split(" - ")[0]];
+        const subject = `Sviluppo ${type}: ${infoData.Name} c.r. ${infoData.ID} - CFT: ${_CFT} - Scadenza ${date}`;
 
         const body = `
                      <p style='margin:0cm;font-size:15px;'><span style="font-size: 13px; font-family: Arial, Helvetica, sans-serif;">Si richiede lo sviluppo del ${type} codice rintracciabilit&agrave;<strong>: <span style="color: red; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">${infoData.ID}</span></strong></span></p>
