@@ -490,7 +490,7 @@
 
                     results.push(result);
 
-                    const Result_pdfBytes = await window.modifyPdf(extract_pdfDoc);
+                    const Result_pdfBytes = await window.modifyPdf(extract_pdfDoc, result);
 
                     // Trigger the browser to download the PDF document
                     if (result.ID != null || result.ID != undefined) {
@@ -508,7 +508,7 @@
 
         }
 
-        window.modifyPdf = async (pdfDoc) => {
+        window.modifyPdf = async (pdfDoc, result) => {
             // Fetch custom font
             const url = '../resource/font/IndieFlower-Regular.ttf' // or NanumPenScript-Regular.ttf
             const fontBytes = await fetch(url).then(res => res.arrayBuffer());
@@ -634,7 +634,7 @@
                 pages = pdfDoc.getPages() //update page
                 const ModelloARev9Page = pages[2] //get page
 
-                ModelloARev9Page.drawText(IDPraticaFour, { //add ID Pratica Four
+                ModelloARev9Page.drawText(result.ID, { //add ID Pratica Four
                     x: 430,
                     y: 790,
                     size: 24,
