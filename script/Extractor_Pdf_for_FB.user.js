@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         [beta] Extractor Pdf for FB
+// @name         Extractor Pdf for FB
 // @namespace    https://github.com/trorker
 // @version      1.0.2
 // @description  Aggiunge lo strumento per estrazzione dei RPC o ST
