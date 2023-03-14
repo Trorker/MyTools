@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Extractor Pdf for FB
 // @namespace    https://github.com/trorker
-// @version      1.0.3
+// @version      1.0.4
 // @description  Aggiunge lo strumento per estrazzione dei RPC o ST
 // @author       Ruslan Dzyuba
 // @match        https://it-beat.enelint.global/
@@ -138,7 +138,69 @@
         return csv;
     }
 
-    window.ExtractST = async () => {
+window.ExtractST = async () => {
+
+            const { value: formValues } = await window.Swal.fire({
+                title: 'Seleziona Specifica Tecnica',
+                html:
+                    '<input type="file" id="swal-file" class="swal2-file" accept="application/pdf">' +
+                    '<label for="swal2-checkbox" class="swal2-checkbox" style="display: flex;"><input id="swal-checkbox" type="checkbox" value="1" id="swal2-checkbox"><span class="swal2-label">Firma la Specifica Tecnica</span></label>',
+                focusConfirm: false,
+                showCancelButton: true,
+                cancelButtonText: 'Cancella',
+                preConfirm: () => {
+                    const file = document.getElementById('swal-file').files[0];
+                    const checkbox = document.getElementById('swal-checkbox').checked;
+                    if (!file) window.Swal.showValidationMessage("Selezione il file da caricare!");
+                    return {
+                        file,
+                        checkbox,
+                    }
+                }
+            });
+
+            if (formValues && formValues.file) {
+                const { file, checkbox } = formValues;
+
+                let extra = null;
+                if (checkbox) {
+                    const { value: STform } = await Swal.fire({
+                        title: 'Compila Specifica Tecnica',
+                        html:
+                            '<input id="swal-input-name" class="swal2-input" placeholder="Nome Tecnico">' +
+                            '<input id="swal-input-tel" class="swal2-input" pattern="[0-9]{10}" placeholder="Telefono">',
+                        focusConfirm: false,
+                        confirmButtonText: 'Compila',
+                        willOpen: async () => {
+                            const {Name, Tel} = JSON.parse(localStorage.getItem("STform"));
+                            document.getElementById('swal-input-name').value = Name;
+                            document.getElementById('swal-input-tel').value = Tel;
+                        },
+                        preConfirm: () => {
+                            let Name = document.getElementById('swal-input-name').value;
+                            let Tel = document.getElementById('swal-input-tel').value;
+                            if (Name == "" || Tel == "" ) window.Swal.showValidationMessage("Inserire dati");
+                            return { Name, Tel }
+                        }
+                    })
+
+                    if (STform) {
+                        localStorage.setItem("STform", JSON.stringify(STform));
+                        extra = STform;
+                        console.log(STform);
+                    }
+                }
+
+                const reader = new FileReader()
+                reader.onload = (e) => {
+                    window.extractPdf(e.target.result, "ST", checkbox, extra);
+                }
+                reader.readAsArrayBuffer(file)
+            }
+
+        }
+
+    window.ExtractST_Old = async () => {
 
         const { value: formValues } = await window.Swal.fire({
             title: 'Seleziona Specifica Tecnica',
@@ -200,7 +262,7 @@
         }
     }
 
-    window.extractPdf = async (ArrayBuffer, select, checked) => {
+    window.extractPdf = async (ArrayBuffer, select, checked, extra) => {
         let results = [];
 
         await PDFDocument.load(ArrayBuffer).then(async (pdfDoc) => {
@@ -239,7 +301,7 @@
 
                 let Result_pdfBytes = await extract_pdfDoc.save();
                 if (checked && select == "ST") {
-                    Result_pdfBytes = await window.modifyPdf(extract_pdfDoc, result);
+                    Result_pdfBytes = await window.modifyPdf(extract_pdfDoc, result, extra);
                 }
 
                 // Trigger the browser to download the PDF document
@@ -442,7 +504,7 @@
         });
     }
 
-    window.modifyPdf = async (pdfDoc, result) => {
+    window.modifyPdf = async (pdfDoc, result, extra) => {
         // Fetch custom font
         const url = 'https://trorker.github.io/MyTools/resource/font/IndieFlower-Regular.ttf' // or NanumPenScript-Regular.ttf
         const fontBytes = await fetch(url).then(res => res.arrayBuffer());
@@ -474,7 +536,7 @@
         }
 
         // Draw a string of text diagonally across the first page
-        firstPage.drawText("+39 342 188 0047", {
+        firstPage.drawText(extra.Tel, {
             x: 58,
             y: (262 - pxSpaceModelloST),
             size,
@@ -504,7 +566,7 @@
         })
 
         // Draw a string of text diagonally across the first page
-        firstPage.drawText("Ruslan Dzyuba", {
+        firstPage.drawText(extra.Name, {
             x: 280,
             y: (222 - pxSpaceModelloST),
             size,
@@ -515,7 +577,7 @@
 
         const secondPage = pages[4]
         // Draw a string of text diagonally across the first page
-        secondPage.drawText("+39 342 188 0047", {
+        secondPage.drawText(extra.Tel, {
             x: 58,
             y: (261 - pxSpaceModelloST),
             size,
@@ -545,7 +607,7 @@
         })
 
         // Draw a string of text diagonally across the first page
-        secondPage.drawText("Ruslan Dzyuba", {
+        secondPage.drawText(extra.Name, {
             x: 280,
             y: (221 - pxSpaceModelloST),
             size,
